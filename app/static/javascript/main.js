@@ -25,7 +25,14 @@ function log(){
 	xhr.send(body); 
 
 	xhr.onreadystatechange = function() { 
-		console.log(xhr.responseText);	  
+		var xhr2 = new XMLHttpRequest();
+		xhr2.open('GET', 'http://localhost:8000/news', true);
+		xhr2.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr2.send(); 	
+		xhr2.onreadystatechange = function() { 
+			if (xhr.responseText == "Пользователь был найден")
+				document.location.href="http://localhost:8000/news"
+		}
 	}
 	  
 }

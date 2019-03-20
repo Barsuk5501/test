@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from . models import MyUser
+from . models import Post
 from django.http import HttpResponse
 
 def register (request):	
@@ -40,7 +41,8 @@ def login (request):
 	elif request.method == "GET":
 	    return render(request, 'app/login.html', {})
 
-def get (request):
-	print(request)
+def news(request):
+	posts = Post.objects.filter()
+	return render(request, 'app/news.html', {'posts': posts})
 
 
