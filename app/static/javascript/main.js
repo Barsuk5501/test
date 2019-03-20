@@ -12,7 +12,7 @@ function register(){
 	xhr.send(body); 
 }
 
-function login(){
+function log(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', 'http://localhost:8000/login', true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -21,6 +21,11 @@ function login(){
 	var login = document.getElementById("login").value;
     var password = document.getElementById("password").value;
 
-	var body = "login=" + login + "&password=" + password + "&age="+age;
+	var body = "login=" + login + "&password=" + password;
 	xhr.send(body); 
+
+	xhr.onreadystatechange = function() { 
+		console.log(xhr.responseText);	  
+	}
+	  
 }

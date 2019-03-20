@@ -3,6 +3,7 @@ from . models import MyUser
 from django.http import HttpResponse
 
 def register (request):	
+	print("іваіваіва")
 	if request.method == "POST": 
 		body = request.body.decode('utf-8')
 		body = body.split("&")
@@ -25,11 +26,11 @@ def login (request):
 		body = request.body.decode('utf-8')
 		body = body.split("&")
 
-		login = body[1].split("=")[1]
-		password = body[0].split("=")[1]
-
-		users = MyUser.objects.get(login=login, password=password)
-
+		password = body[1].split("=")[1]
+		login = body[0].split("=")[1]
+		
+		users = MyUser.objects.filter(login = login, password = password)
+		
 		if len(users) > 0:
 			response = HttpResponse("Пользователь был найден")
 		else:
@@ -38,5 +39,8 @@ def login (request):
 
 	elif request.method == "GET":
 	    return render(request, 'app/login.html', {})
+
+def get (request):
+	print(request)
 
 
